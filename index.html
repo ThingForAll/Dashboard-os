@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard OS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- 🔥 GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- 🔥 BOOTSTRAP -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+/* --------------------------------------------------
+   GLOBAL COSMIC STYLE
+-------------------------------------------------- */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #00111a, #00060a 70%);
+  overflow-x: hidden;
+  color: #e8faff;
+}
+
+/* Cosmic Particles */
+#particles {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+  background: url('https://i.imgur.com/1MZlQvY.png');
+  opacity: 0.25;
+  animation: float 12s infinite linear;
+}
+
+@keyframes float {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-300px); }
+}
+
+/* --------------------------------------------------
+   LOADING SCREEN
+-------------------------------------------------- */
+#loader {
+  position: fixed;
+  width: 100%; height: 100%;
+  background: #000c14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+.loader-spinner {
+  width: 85px;
+  height: 85px;
+  border: 4px solid #0ff;
+  border-top: 4px solid transparent;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite, neonGlow 1.5s infinite alternate;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes neonGlow {
+  0% { box-shadow: 0 0 10px #00eaff; }
+  100% { box-shadow: 0 0 30px #00eaff; }
+}
+
+/* --------------------------------------------------
+   MAIN CONTAINER
+-------------------------------------------------- */
+.container-box {
+  max-width: 900px;
+  margin: 130px auto;
+  padding: 30px;
+  background: rgba(0, 25, 40, 0.7);
+  border-radius: 18px;
+  border: 1px solid #00c9ff70;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 25px #009dff70;
+}
+
+/* --------------------------------------------------
+   HEADER TITLE
+-------------------------------------------------- */
+.main-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 42px;
+  text-align: center;
+  color: #00eaff;
+  text-shadow: 0 0 20px #00caff;
+  margin-bottom: 25px;
+}
+
+/* --------------------------------------------------
+   INFO CARD (Nama, Kelas, NIM, etc)
+-------------------------------------------------- */
+.info-card {
+  background: rgba(0, 15, 25, 0.7);
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid #00eaff70;
+  box-shadow: 0 0 20px #00caff50 inset;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.info-label {
+  color: #9feaff;
+  font-weight: 600;
+}
+
+.info-value {
+  color: #ffffff;
+  font-weight: 400;
+}
+
+/* --------------------------------------------------
+   NIM COSMIC TYPING EFFECT
+-------------------------------------------------- */
+#nimCosmic {
+  font-family: "Orbitron";
+  font-size: 20px;
+  color: #00f6ff;
+  text-shadow: 0 0 15px #00f6ff, 0 0 25px #00f6ff;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #00ffff;
+  width: 0;
+  animation: typewriter 3s steps(20) forwards, blink 0.8s infinite;
+}
+
+@keyframes typewriter {
+  to { width: 190px; }
+}
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* --------------------------------------------------
+   BUTTONS
+-------------------------------------------------- */
+.neon-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 15px;
+  background: #001d2d;
+  border: 1px solid #00eaff70;
+  color: #00eaff;
+  border-radius: 10px;
+  transition: 0.25s;
+  font-size: 18px;
+  font-family: "Orbitron";
+}
+.neon-btn:hover {
+  background: #003c55;
+  box-shadow: 0 0 20px #00eaff;
+  transform: translateY(-3px);
+}
+
+/* --------------------------------------------------
+   ICON GITHUB
+-------------------------------------------------- */
+.github-icon {
+  font-size: 60px;
+  color: white;
+  transition: 0.3s;
+  text-align: center;
+  display: block;
+}
+
+.github-icon:hover {
+  color: #00eaff;
+  text-shadow: 0 0 25px #00eaff;
+  transform: scale(1.1);
+}
+
+/* --------------------------------------------------
+   FOOTER POPUP MESSAGE
+-------------------------------------------------- */
+#footerPopup {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 14px;
+  color: #7dd9ff;
+}
+
+</style>
+</head>
+<body>
+
+<!-- COSMIC PARTICLES -->
+<div id="particles"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-spinner"></div>
+  <p style="margin-top:20px; color:#00eaff; font-family:Orbitron;">Sabar Ya...</p>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container-box">
+
+  <div class="main-title">Selamat Datang</div>
+
+  <!-- INFO CARD -->
+  <div class="info-card">
+    <div class="info-row">
+      <span class="info-label">Nama</span>
+      <span class="info-value">Hamid Albar</span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-label">Kelas</span>
+      <span class="info-value">IM24B</span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-label">NIM</span>
+      <span class="info-value"><span id="nimCosmic">102240047</span></span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-label">Dosen Pengampu</span>
+      <span class="info-value">Arif Iman A, S.Kom., M.M.S.I.</span>
+    </div>
+
+    <div class="info-row">
+      <span class="info-label">Tanggal Dibuat</span>
+      <span class="info-value" id="tanggalBuild"></span>
+    </div>
+  </div>
+
+  <!-- BUTTONS -->
+  <button class="neon-btn" onclick="openConfirm('uts')">Buka Halaman UTS</button>
+  <button class="neon-btn" onclick="openConfirm('uas')">Buka Halaman UAS</button>
+
+  <!-- GITHUB ICON -->
+  <a href="https://github.com/ThingForAll" target="_blank" class="github-icon">
+    <i class="bi bi-github"></i>
+  </a>
+
+  <p id="footerPopup">Institut Teknologi dan Sains Nahdlatul Ulama Pekalongan</p>
+
+</div>
+
+<!-- MODAL STEP 1 -->
+<div class="modal fade" id="modal1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background:#00131d; color:#00eaff; border:1px solid #00eaff55;">
+      <div class="modal-header">
+        <h5 class="modal-title">Konfirmasi Langkah 1</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Apakah kamu yakin ingin melanjutkan?
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+        <button class="btn btn-info" onclick="nextStep()">Lanjutkan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL STEP 2 -->
+<div class="modal fade" id="modal2">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background:#00131d; color:#00eaff; border:1px solid #00eaff;">
+      <div class="modal-header">
+        <h5 class="modal-title">Konfirmasi Akhir</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Sudah siap masuk ke halaman tersebut?
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+        <button class="btn btn-danger" onclick="goNow()">Ya, lanjut</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOTSTRAP ICONS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- SCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+let targetPage = "";
+
+// Loader hide
+window.onload = () => {
+  setTimeout(() => document.getElementById("loader").style.display = "none", 1800);
+};
+
+// Tanggal Build
+document.getElementById("tanggalBuild").innerText = new Date().toLocaleDateString('id-ID', {
+  weekday: "long", year: "numeric", month: "long", day: "numeric"
+});
+
+// Step modal
+function openConfirm(type){
+  targetPage = type;
+  new bootstrap.Modal(document.getElementById('modal1')).show();
+}
+
+function nextStep(){
+  let m1 = bootstrap.Modal.getInstance(document.getElementById('modal1'));
+  m1.hide();
+  setTimeout(()=> new bootstrap.Modal(document.getElementById('modal2')).show(), 300);
+}
+
+function goNow(){
+  if(targetPage === "uts"){
+    window.location.href = "https://thingforall.github.io/Instalasi-Kali-Linux/"; // arahkan ke repo UTS
+  }
+  if(targetPage === "uas"){
+    window.location.href = "https://thingforall.github.io/uas-os-page/"; // arahkan ke repo UAS
+  }
+}
+</script>
+
+</body>
+</html>
