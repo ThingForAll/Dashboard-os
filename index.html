@@ -282,10 +282,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-  /* ===================================================================
-     Procedural background (nebula + noise + subtle vortices) on bgCanvas
-     FX canvas handles meteors, bursts, mouse light and post effects
-     =================================================================== */
+  /* ================================================== */
 
   // canvases
   const bgCanvas = document.getElementById('bgCanvas');
@@ -300,10 +297,7 @@
   window.addEventListener('resize', resizeAll);
   resizeAll();
 
-  /* -------------------------
-     procedural nebula: multi-layer noise (perlin-lite)
-     we'll implement simple value-noise for performance
-     ------------------------- */
+  /* ------------------------- */
   // simple pseudo-random seeded noise
   function Noise(seed=1){
     let s = seed % 2147483647;
@@ -389,9 +383,7 @@
     bgCtx.globalCompositeOperation = 'source-over';
   }
 
-  /* =========================
-     FX canvas: meteors, bursts, mouse spotlight
-     ========================= */
+  /* ======================== */
   const meteors = [];
   const bursts = [];
   const stars = []; // helper micro stars
@@ -518,9 +510,7 @@
   }
   requestAnimationFrame(frame);
 
-  /* ============================
-     UI small behaviours
-     ============================ */
+  /* UI small behaviours */
   // created date
   document.getElementById('created').textContent = new Date().toLocaleDateString('id-ID', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
 
@@ -534,9 +524,7 @@
     }, 800);
   });
 
-  /* ============================
-     Double-confirm flow opening GitHub links
-     ============================ */
+  /* Double-confirm flow opening GitHub links */
   const conf1 = new bootstrap.Modal(document.getElementById('confirm1'));
   const conf2 = new bootstrap.Modal(document.getElementById('confirm2'));
   let pendingLink = '';
@@ -565,10 +553,7 @@
 
   function openCampus(){ new bootstrap.Modal(document.getElementById('campusModal')).show(); }
 
-  /* ============================
-     Audio: ambient deep pad created with WebAudio (no external file)
-     starts muted, user can unmute
-     ============================ */
+  /* Audio: ambient deep pad created with WebAudio (no external file) starts muted, user can unmute */
   let audioCtx, masterGain, isPlaying = false;
   const audioBtn = document.getElementById('audioBtn');
 
@@ -637,9 +622,7 @@
   // start audio on first user gesture to satisfy autoplay rules
   window.addEventListener('pointerdown', function once(){ if(!audioCtx) startAudio(); window.removeEventListener('pointerdown', once); });
 
-  /* ================================
-     Small performance & misc helpers
-     ================================ */
+  /* Small performance & misc helpers */
   // adaptive particle density (short)
   // (layers already scale with canvas size)
 
